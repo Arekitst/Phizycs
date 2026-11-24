@@ -1,98 +1,411 @@
 <!doctype html>
 <html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111513">
-  <meta name="description" content="Мій візуальний розбір електродвигуна та генератора: справжня машина в розрізі, її будова й перетворення енергії.">
-  <title>Рух стає струмом — Горбунов Артемій</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/visual-fallback.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script defer src="js/app.js"></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">До змісту</a>
-  <div class="read-progress" aria-hidden="true"><span id="read-progress"></span></div>
-  <header class="site-header">
-    <a class="signature" href="#start"><span class="signature-mark">АГ</span><span>АРТЕМІЙ<br><small>ГОРБУНОВ</small></span></a>
-    <nav class="main-nav" aria-label="Навігація"><a href="#inside">Будова</a><a href="#exploded">Розбір</a><a href="#principle">Принцип</a><a href="#ending">Висновок</a></nav>
-    <a class="header-jump" href="#exploded">ГОРТАЙТЕ <span>↓</span></a>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111513" />
+    <meta
+      name="description"
+      content="Мій візуальний розбір електродвигуна та генератора: справжня машина в розрізі, її будова й перетворення енергії."
+    />
+    <title>Рух стає струмом — Горбунов Артемій</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/visual-fallback.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+    ></script>
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">До змісту</a>
+    <div class="read-progress" aria-hidden="true">
+      <span id="read-progress"></span>
+    </div>
+    <header class="site-header">
+      <a class="signature" href="#start"
+        ><span class="signature-mark">АГ</span
+        ><span>АРТЕМІЙ<br /><small>ГОРБУНОВ</small></span></a
+      >
+      <nav class="main-nav" aria-label="Навігація">
+        <a href="#inside">Будова</a><a href="#exploded">Розбір</a
+        ><a href="#principle">Принцип</a><a href="#ending">Висновок</a>
+      </nav>
+      <a class="header-jump" href="#exploded">ГОРТАЙТЕ <span>↓</span></a>
+    </header>
 
-  <main id="main">
-    <section class="hero page-section" id="start">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="live-dot"></span> МОЯ ТЕМА · ЕЛЕКТРИЧНІ МАШИНИ</p>
-        <h1>РУХ<br><em>СТАЄ</em><br>СТРУМОМ</h1>
-        <div class="hero-rule"></div>
-        <p class="hero-lede">Генератор і двигун схожі за будовою. Один бере енергію з руху, інший сам створює рух.</p>
-        <a class="hero-cta" href="#inside"><span>Зазирнути всередину</span><b>↘</b></a>
-        <div class="hero-byline"><span>Горбунов Артемій</span><span>ФІЗИКА · 9 КЛАС</span></div>
-      </div>
-      <figure class="hero-photo">
-        <div class="hero-image-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Cut-away_version_of_an_electric_motor_%281%29.JPG/1280px-Cut-away_version_of_an_electric_motor_%281%29.JPG" alt="Трифазний асинхронний двигун у розрізі: відкрита частина корпусу показує статорну обмотку, ротор і вал" fetchpriority="high"><span class="photo-scan"></span><span class="hero-photo-label">АСИНХРОННИЙ ДВИГУН<br><small>НАВЧАЛЬНА МОДЕЛЬ · РОЗРІЗ</small></span><span class="hero-corner">01 / 07</span></div>
-        <figcaption><span>Реальний двигун — не умовна схема</span><a href="https://commons.wikimedia.org/wiki/File:Cut-away_version_of_an_electric_motor_(1).JPG" target="_blank" rel="noreferrer">ДЖЕРЕЛО ФОТО ↗</a></figcaption>
-      </figure>
-      <span class="hero-vertical">МОЯ СПРОБА ПОБАЧИТИ, ЯК ПРАЦЮЄ МАГНІТНЕ ПОЛЕ</span>
-    </section>
-
-    <section class="inside page-section" id="inside">
-      <div class="section-top"><span>02 / ЩО ВСЕРЕДИНІ</span><span>СПРАВЖНІ ДЕТАЛІ</span></div>
-      <div class="inside-intro"><h2>НЕ ПРОСТО<br><em>ЗАЛІЗНИЙ ЦИЛІНДР</em></h2><p>Роздивіться частини машини. Натисніть на номер — пояснення зміниться.</p></div>
-      <div class="cutaway-layout">
-        <div class="cutaway-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Cut-away_version_of_an_electric_motor_%281%29.JPG/1280px-Cut-away_version_of_an_electric_motor_%281%29.JPG" alt="Розріз справжнього трифазного асинхронного електродвигуна" loading="lazy">
-          <button class="photo-point point-stator" data-part="stator" aria-label="Пояснити статор">01</button><button class="photo-point point-rotor" data-part="rotor" aria-label="Пояснити ротор">02</button><button class="photo-point point-shaft" data-part="shaft" aria-label="Пояснити вал">03</button><button class="photo-point point-cage" data-part="cage" aria-label="Пояснити клітку ротора">04</button><span class="cutaway-stamp">ВІДКРИТИЙ КОРПУС / ВИДНО МЕХАНІЗМ</span>
+    <main id="main">
+      <section class="hero page-section" id="start">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="live-dot"></span> МОЯ ТЕМА · ЕЛЕКТРИЧНІ МАШИНИ
+          </p>
+          <h1>РУХ<br /><em>СТАЄ</em><br />СТРУМОМ</h1>
+          <div class="hero-rule"></div>
+          <p class="hero-lede">
+            Генератор і двигун схожі за будовою. Один бере енергію з руху, інший
+            сам створює рух.
+          </p>
+          <a class="hero-cta" href="#inside"
+            ><span>Зазирнути всередину</span><b>↘</b></a
+          >
+          <div class="hero-byline">
+            <span
+              >Проєкт, Сайт, 3D-МОДЕЛЬ повністю розробив Горбунов Артемій</span
+            ><span></span>
+          </div>
         </div>
-        <div class="part-story"><div class="part-tabs" role="tablist" aria-label="Деталі двигуна"><button class="part-tab active" role="tab" aria-selected="true" data-part="stator"><span>01</span> Статор</button><button class="part-tab" role="tab" aria-selected="false" data-part="rotor"><span>02</span> Ротор</button><button class="part-tab" role="tab" aria-selected="false" data-part="shaft"><span>03</span> Вал і підшипники</button><button class="part-tab" role="tab" aria-selected="false" data-part="cage"><span>04</span> Клітка ротора</button></div>
-          <article class="part-description" aria-live="polite"><span id="part-number">ДЕТАЛЬ 01</span><h3 id="part-title">Статор</h3><p id="part-copy">Нерухоме осердя з обмотками. Коли через них проходить трифазний струм, усередині виникає обертове магнітне поле.</p><small id="part-note">ЗАКРІПЛЕНИЙ У КОРПУСІ</small></article>
+        <figure class="hero-photo">
+          <div class="hero-image-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Cut-away_version_of_an_electric_motor_%281%29.JPG/1280px-Cut-away_version_of_an_electric_motor_%281%29.JPG"
+              alt="Трифазний асинхронний двигун у розрізі: відкрита частина корпусу показує статорну обмотку, ротор і вал"
+              fetchpriority="high"
+            /><span class="photo-scan"></span
+            ><span class="hero-photo-label"
+              >АСИНХРОННИЙ ДВИГУН<br /><small
+                >НАВЧАЛЬНА МОДЕЛЬ · РОЗРІЗ</small
+              ></span
+            ><span class="hero-corner">01 / 07</span>
+          </div>
+          <figcaption>
+            <span>Реальний двигун — не умовна схема</span
+            ><a
+              href="https://commons.wikimedia.org/wiki/File:Cut-away_version_of_an_electric_motor_(1).JPG"
+              target="_blank"
+              rel="noreferrer"
+              >ДЖЕРЕЛО ФОТО ↗</a
+            >
+          </figcaption>
+        </figure>
+        <span class="hero-vertical"
+          >МОЯ СПРОБА ПОБАЧИТИ, ЯК ПРАЦЮЄ МАГНІТНЕ ПОЛЕ</span
+        >
+      </section>
+
+      <section class="inside page-section" id="inside">
+        <div class="section-top">
+          <span>02 / ЩО ВСЕРЕДИНІ</span><span>СПРАВЖНІ ДЕТАЛІ</span>
         </div>
-      </div>
-      <p class="photo-attribution">Фото: S.J. de Waard / Wikimedia Commons · CC BY 2.5 · <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noreferrer">ліцензія ↗</a></p>
-    </section>
+        <div class="inside-intro">
+          <h2>НЕ ПРОСТО<br /><em>ЗАЛІЗНИЙ ЦИЛІНДР</em></h2>
+          <p>
+            Роздивіться частини машини. Натисніть на номер — пояснення
+            зміниться.
+          </p>
+        </div>
+        <div class="cutaway-layout">
+          <div class="cutaway-photo">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Cut-away_version_of_an_electric_motor_%281%29.JPG/1280px-Cut-away_version_of_an_electric_motor_%281%29.JPG"
+              alt="Розріз справжнього трифазного асинхронного електродвигуна"
+              loading="lazy"
+            />
+            <button
+              class="photo-point point-stator"
+              data-part="stator"
+              aria-label="Пояснити статор"
+            >
+              01</button
+            ><button
+              class="photo-point point-rotor"
+              data-part="rotor"
+              aria-label="Пояснити ротор"
+            >
+              02</button
+            ><button
+              class="photo-point point-shaft"
+              data-part="shaft"
+              aria-label="Пояснити вал"
+            >
+              03</button
+            ><button
+              class="photo-point point-cage"
+              data-part="cage"
+              aria-label="Пояснити клітку ротора"
+            >
+              04</button
+            ><span class="cutaway-stamp"
+              >ВІДКРИТИЙ КОРПУС / ВИДНО МЕХАНІЗМ</span
+            >
+          </div>
+          <div class="part-story">
+            <div class="part-tabs" role="tablist" aria-label="Деталі двигуна">
+              <button
+                class="part-tab active"
+                role="tab"
+                aria-selected="true"
+                data-part="stator"
+              >
+                <span>01</span> Статор</button
+              ><button
+                class="part-tab"
+                role="tab"
+                aria-selected="false"
+                data-part="rotor"
+              >
+                <span>02</span> Ротор</button
+              ><button
+                class="part-tab"
+                role="tab"
+                aria-selected="false"
+                data-part="shaft"
+              >
+                <span>03</span> Вал і підшипники</button
+              ><button
+                class="part-tab"
+                role="tab"
+                aria-selected="false"
+                data-part="cage"
+              >
+                <span>04</span> Клітка ротора
+              </button>
+            </div>
+            <article class="part-description" aria-live="polite">
+              <span id="part-number">ДЕТАЛЬ 01</span>
+              <h3 id="part-title">Статор</h3>
+              <p id="part-copy">
+                Нерухоме осердя з обмотками. Коли через них проходить трифазний
+                струм, усередині виникає обертове магнітне поле.
+              </p>
+              <small id="part-note">ЗАКРІПЛЕНИЙ У КОРПУСІ</small>
+            </article>
+          </div>
+        </div>
+        <p class="photo-attribution">
+          Фото: S.J. de Waard / Wikimedia Commons · CC BY 2.5 ·
+          <a
+            href="https://creativecommons.org/licenses/by/2.5/"
+            target="_blank"
+            rel="noreferrer"
+            >ліцензія ↗</a
+          >
+        </p>
+      </section>
 
-    <section class="exploded-scroll" id="exploded" aria-label="Прокручуйте, щоб побачити двигун у розібраному вигляді">
-      <div class="exploded-sticky">
-        <canvas id="motor-canvas" aria-label="Тривимірна пояснювальна модель двигуна: деталі розходяться під час прокручування"></canvas>
-        <div class="exploded-top"><span>03 / РОЗБИРАЮ ПО ШАРАХ</span><span>ПРОКРУЧУЙТЕ ВНИЗ ↓</span></div>
-        <div class="exploded-copy"><span class="model-tag">ПОЯСНЮВАЛЬНА 3D-МОДЕЛЬ</span><p class="part-counter" id="exploded-count">01 — ЗІБРАНИЙ ДВИГУН</p><h2 id="exploded-title">Усе починається<br>з <em>корпусу.</em></h2><p id="exploded-text">Зовні — ребра охолодження й коробка контактів. Усередині заховані нерухомий статор і ротор, що крутиться.</p><div class="exploded-progress"><span id="exploded-progress"></span></div><div class="exploded-hint">КОЛЕСО МИШІ АБО СЕНСОРНИЙ ЕКРАН</div></div>
-        <div class="model-label" id="model-label"><i></i><span>КОРПУС</span></div>
-        <div class="model-credit">МОДЕЛЬ СТВОРЕНО ДЛЯ ПОЯСНЕННЯ БУДОВИ · НЕ ФОТОГРАФІЯ</div>
-        <div class="webgl-fallback" id="webgl-fallback">3D-МОДЕЛЬ НЕ ЗАВАНТАЖИЛАСЯ. Перевірте інтернет або скористайтеся фото двигуна вище.</div>
-      </div>
-    </section>
+      <section
+        class="exploded-scroll"
+        id="exploded"
+        aria-label="Прокручуйте, щоб побачити двигун у розібраному вигляді"
+      >
+        <div class="exploded-sticky">
+          <canvas
+            id="motor-canvas"
+            aria-label="Тривимірна пояснювальна модель двигуна: деталі розходяться під час прокручування"
+          ></canvas>
+          <div class="exploded-top">
+            <span>03 / РОЗБИРАЮ ПО ШАРАХ</span><span>ПРОКРУЧУЙТЕ ВНИЗ ↓</span>
+          </div>
+          <div class="exploded-copy">
+            <span class="model-tag">ПОЯСНЮВАЛЬНА 3D-МОДЕЛЬ</span>
+            <p class="part-counter" id="exploded-count">01 — ЗІБРАНИЙ ДВИГУН</p>
+            <h2 id="exploded-title">
+              Усе починається<br />з <em>корпусу.</em>
+            </h2>
+            <p id="exploded-text">
+              Зовні — ребра охолодження й коробка контактів. Усередині заховані
+              нерухомий статор і ротор, що крутиться.
+            </p>
+            <div class="exploded-progress">
+              <span id="exploded-progress"></span>
+            </div>
+            <div class="exploded-hint">КОЛЕСО МИШІ АБО СЕНСОРНИЙ ЕКРАН</div>
+          </div>
+          <div class="model-label" id="model-label">
+            <i></i><span>КОРПУС</span>
+          </div>
+          <div class="model-credit">
+            МОДЕЛЬ СТВОРЕНО ДЛЯ ПОЯСНЕННЯ БУДОВИ · НЕ ФОТОГРАФІЯ
+          </div>
+          <div class="webgl-fallback" id="webgl-fallback">
+            3D-МОДЕЛЬ НЕ ЗАВАНТАЖИЛАСЯ. Перевірте інтернет або скористайтеся
+            фото двигуна вище.
+          </div>
+        </div>
+      </section>
 
-    <section class="principle page-section" id="principle">
-      <div class="section-top"><span>04 / ЗВІДКИ БЕРЕТЬСЯ РУХ</span><span>МАГНІТНЕ ПОЛЕ · РОТОР</span></div>
-      <div class="principle-grid"><div class="principle-title"><h2>ПОЛЕ<br>ТЯГНЕ<br><em>ЗА СОБОЮ</em></h2><p>Уявімо, що магнітне поле — це хвиля, яка біжить по колу всередині статора.</p></div><div class="principle-visual"><div class="magnetic-stage"><div class="magnetic-orbit orbit-a"></div><div class="magnetic-orbit orbit-b"></div><div class="magnetic-orbit orbit-c"></div><div class="stator-bands"></div><div class="rotor-disc"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="field-arrow">ОБЕРТОВЕ ПОЛЕ <b>↻</b></span><span class="field-label">СТАТОР</span><span class="rotor-label">РОТОР</span></div><p class="visual-caption">РОТОР ОБЕРТАЄТЬСЯ СЛІДОМ ЗА ПОЛЕМ — АЛЕ ТРОХИ ПОВІЛЬНІШЕ</p></div></div>
-      <div class="law-strip"><span>ЗАКОН ФАРАДЕЯ</span><strong>ε = −N · ΔΦ / Δt</strong><p>Коли магнітний потік змінюється, у провіднику виникає індукована напруга.</p></div>
-    </section>
+      <section class="principle page-section" id="principle">
+        <div class="section-top">
+          <span>04 / ЗВІДКИ БЕРЕТЬСЯ РУХ</span
+          ><span>МАГНІТНЕ ПОЛЕ · РОТОР</span>
+        </div>
+        <div class="principle-grid">
+          <div class="principle-title">
+            <h2>ПОЛЕ<br />ТЯГНЕ<br /><em>ЗА СОБОЮ</em></h2>
+            <p>
+              Уявімо, що магнітне поле — це хвиля, яка біжить по колу всередині
+              статора.
+            </p>
+          </div>
+          <div class="principle-visual">
+            <div class="magnetic-stage">
+              <div class="magnetic-orbit orbit-a"></div>
+              <div class="magnetic-orbit orbit-b"></div>
+              <div class="magnetic-orbit orbit-c"></div>
+              <div class="stator-bands"></div>
+              <div class="rotor-disc">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <span class="field-arrow">ОБЕРТОВЕ ПОЛЕ <b>↻</b></span
+              ><span class="field-label">СТАТОР</span
+              ><span class="rotor-label">РОТОР</span>
+            </div>
+            <p class="visual-caption">
+              РОТОР ОБЕРТАЄТЬСЯ СЛІДОМ ЗА ПОЛЕМ — АЛЕ ТРОХИ ПОВІЛЬНІШЕ
+            </p>
+          </div>
+        </div>
+        <div class="law-strip">
+          <span>ЗАКОН ФАРАДЕЯ</span><strong>ε = −N · ΔΦ / Δt</strong>
+          <p>
+            Коли магнітний потік змінюється, у провіднику виникає індукована
+            напруга.
+          </p>
+        </div>
+      </section>
 
-    <section class="energy page-section" id="energy">
-      <div class="section-top"><span>05 / ЕНЕРГІЯ</span><span>ПЕРЕМИКАЧ РЕЖИМУ</span></div>
-      <div class="energy-head"><h2>ОДНА БУДОВА.<br><em>ДВА НАПРЯМКИ.</em></h2><p>Натисніть на режим. Стрілки покажуть, яка енергія надходить до машини й що вона віддає.</p></div>
-      <div class="mode-switch" role="group" aria-label="Оберіть режим"><button class="mode-button active" data-mode="motor" aria-pressed="true">ДВИГУН <span>↗</span></button><button class="mode-button" data-mode="generator" aria-pressed="false">ГЕНЕРАТОР <span>↙</span></button></div>
-      <div class="energy-diagram" data-mode="motor"><div class="energy-node input-node"><span>НА ВХОДІ</span><strong id="input-energy">ЕЛЕКТРИЧНА<br>ЕНЕРГІЯ</strong><b id="input-icon">ϟ</b></div><div class="energy-flow"><i></i><small id="input-flow-label">СТРУМ В ОБМОТКАХ</small></div><div class="machine-node"><div class="machine-ring"><div class="machine-rotor"></div></div><span>МАШИНА</span></div><div class="energy-flow"><i></i><small id="output-flow-label">ОБЕРТАННЯ ВАЛА</small></div><div class="energy-node output-node"><span>НА ВИХОДІ</span><strong id="output-energy">МЕХАНІЧНА<br>ЕНЕРГІЯ</strong><b id="output-icon">↻</b></div></div>
-      <p class="energy-note" id="energy-note">Струм у статорі створює магнітне поле, а його взаємодія з ротором обертає вал.</p>
-    </section>
+      <section class="energy page-section" id="energy">
+        <div class="section-top">
+          <span>05 / ЕНЕРГІЯ</span><span>ПЕРЕМИКАЧ РЕЖИМУ</span>
+        </div>
+        <div class="energy-head">
+          <h2>ОДНА БУДОВА.<br /><em>ДВА НАПРЯМКИ.</em></h2>
+          <p>
+            Натисніть на режим. Стрілки покажуть, яка енергія надходить до
+            машини й що вона віддає.
+          </p>
+        </div>
+        <div class="mode-switch" role="group" aria-label="Оберіть режим">
+          <button
+            class="mode-button active"
+            data-mode="motor"
+            aria-pressed="true"
+          >
+            ДВИГУН <span>↗</span></button
+          ><button
+            class="mode-button"
+            data-mode="generator"
+            aria-pressed="false"
+          >
+            ГЕНЕРАТОР <span>↙</span>
+          </button>
+        </div>
+        <div class="energy-diagram" data-mode="motor">
+          <div class="energy-node input-node">
+            <span>НА ВХОДІ</span
+            ><strong id="input-energy">ЕЛЕКТРИЧНА<br />ЕНЕРГІЯ</strong
+            ><b id="input-icon">ϟ</b>
+          </div>
+          <div class="energy-flow">
+            <i></i><small id="input-flow-label">СТРУМ В ОБМОТКАХ</small>
+          </div>
+          <div class="machine-node">
+            <div class="machine-ring"><div class="machine-rotor"></div></div>
+            <span>МАШИНА</span>
+          </div>
+          <div class="energy-flow">
+            <i></i><small id="output-flow-label">ОБЕРТАННЯ ВАЛА</small>
+          </div>
+          <div class="energy-node output-node">
+            <span>НА ВИХОДІ</span
+            ><strong id="output-energy">МЕХАНІЧНА<br />ЕНЕРГІЯ</strong
+            ><b id="output-icon">↻</b>
+          </div>
+        </div>
+        <p class="energy-note" id="energy-note">
+          Струм у статорі створює магнітне поле, а його взаємодія з ротором
+          обертає вал.
+        </p>
+      </section>
 
-    <section class="conditions page-section" id="conditions">
-      <div class="section-top"><span>06 / НЕ ВСЕ ТАК ПРОСТО</span><span>ВАЖЛИВЕ УТОЧНЕННЯ</span></div>
-      <div class="conditions-grid"><h2>«НАВПАКИ»<br><em>З УМОВАМИ</em></h2><div><p>Фраза «генератор — це двигун навпаки» добре передає напрям перетворення енергії, але не означає, що будь-який двигун можна просто розкрутити рукою й отримати струм.</p><p>Для асинхронної машини потрібне збудження магнітного поля. Щоб вона віддавала електричну енергію, ротор треба розкрутити швидше за синхронне поле. Конкретні умови залежать від типу машини та її підключення.</p><div class="condition-callout"><span>АСИНХРОННИЙ ГЕНЕРАТОР</span><strong>швидкість ротора<br><b>&gt;</b> синхронна швидкість поля</strong></div></div></div>
-    </section>
+      <section class="conditions page-section" id="conditions">
+        <div class="section-top">
+          <span>06 / НЕ ВСЕ ТАК ПРОСТО</span><span>ВАЖЛИВЕ УТОЧНЕННЯ</span>
+        </div>
+        <div class="conditions-grid">
+          <h2>«НАВПАКИ»<br /><em>З УМОВАМИ</em></h2>
+          <div>
+            <p>
+              Фраза «генератор — це двигун навпаки» добре передає напрям
+              перетворення енергії, але не означає, що будь-який двигун можна
+              просто розкрутити рукою й отримати струм.
+            </p>
+            <p>
+              Для асинхронної машини потрібне збудження магнітного поля. Щоб
+              вона віддавала електричну енергію, ротор треба розкрутити швидше
+              за синхронне поле. Конкретні умови залежать від типу машини та її
+              підключення.
+            </p>
+            <div class="condition-callout">
+              <span>АСИНХРОННИЙ ГЕНЕРАТОР</span
+              ><strong
+                >швидкість ротора<br /><b>&gt;</b> синхронна швидкість
+                поля</strong
+              >
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section class="ending page-section" id="ending">
-      <div class="section-top"><span>07 / ГОЛОВНА ДУМКА</span><span>ДЯКУЮ ЗА УВАГУ</span></div>
-      <p class="ending-statement">Рух і струм<br>зустрічаються<br>в <em>магнітному полі.</em></p>
-      <div class="ending-bottom"><span>ДВИГУН · ЕЛЕКТРИЧНЕ → МЕХАНІЧНЕ</span><span>ГЕНЕРАТОР · МЕХАНІЧНЕ → ЕЛЕКТРИЧНЕ</span><a href="#start">ЩЕ РАЗ ↑</a></div>
-      <div class="source-drawer"><details><summary>ДЖЕРЕЛА ТА ПОСИЛАННЯ</summary><div class="source-links"><a href="https://commons.wikimedia.org/wiki/File:Cut-away_version_of_an_electric_motor_(1).JPG" target="_blank" rel="noreferrer">Фото двигуна · S.J. de Waard · Wikimedia Commons ↗</a><a href="https://uahistory.co/pidruchniki/zasekina-physics-9-class-2022-deep-level-reissue/20.php" target="_blank" rel="noreferrer">Підручник фізики 9 клас · електромагнітна індукція ↗</a><a href="https://elprivod.nmu.org.ua/ua/entrant/electricmotor.php" target="_blank" rel="noreferrer">НТУ «Дніпровська політехніка» · електродвигун ↗</a><a href="https://rn.k.com.ua/114218" target="_blank" rel="noreferrer">QR-адреса з навчального аркуша ↗</a></div></details></div>
-      <footer><span>Горбунов Артемій</span><span>ПІДГОТУВАВ І РОЗІБРАВ САМ</span><a href="Текст-для-захисту.txt" download>ТЕКСТ ДЛЯ ВИСТУПУ ↓</a></footer>
-    </section>
-  </main>
-</body>
+      <section class="ending page-section" id="ending">
+        <div class="section-top">
+          <span>07 / ГОЛОВНА ДУМКА</span><span>ДЯКУЮ ЗА УВАГУ</span>
+        </div>
+        <p class="ending-statement">
+          Рух і струм<br />зустрічаються<br />в <em>магнітному полі.</em>
+        </p>
+        <div class="ending-bottom">
+          <span>ДВИГУН · ЕЛЕКТРИЧНЕ → МЕХАНІЧНЕ</span
+          ><span>ГЕНЕРАТОР · МЕХАНІЧНЕ → ЕЛЕКТРИЧНЕ</span
+          ><a href="#start">ЩЕ РАЗ ↑</a>
+        </div>
+        <div class="source-drawer">
+          <details>
+            <summary>ДЖЕРЕЛА ТА ПОСИЛАННЯ</summary>
+            <div class="source-links">
+              <a
+                href="https://commons.wikimedia.org/wiki/File:Cut-away_version_of_an_electric_motor_(1).JPG"
+                target="_blank"
+                rel="noreferrer"
+                >Фото двигуна · S.J. de Waard · Wikimedia Commons ↗</a
+              ><a
+                href="https://uahistory.co/pidruchniki/zasekina-physics-9-class-2022-deep-level-reissue/20.php"
+                target="_blank"
+                rel="noreferrer"
+                >Підручник фізики 9 клас · електромагнітна індукція ↗</a
+              ><a
+                href="https://elprivod.nmu.org.ua/ua/entrant/electricmotor.php"
+                target="_blank"
+                rel="noreferrer"
+                >НТУ «Дніпровська політехніка» · електродвигун ↗</a
+              ><a
+                href="https://rn.k.com.ua/114218"
+                target="_blank"
+                rel="noreferrer"
+                >QR-адреса з навчального аркуша ↗</a
+              >
+            </div>
+          </details>
+        </div>
+        <footer>
+          <span>Горбунов Артемій</span><span>ПІДГОТУВАВ І РОЗІБРАВ САМ</span
+          ><a href="Текст-для-захисту.txt" download>ТЕКСТ ДЛЯ ВИСТУПУ ↓</a>
+        </footer>
+      </section>
+    </main>
+  </body>
 </html>
